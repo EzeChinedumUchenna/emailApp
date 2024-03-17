@@ -4,19 +4,18 @@ In this project, we've established a robust CI/CD pipeline that automates the so
 
 ## Pipeline Workflow:
 
+![DevOpsDesign](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/87d21b8a-9add-4e0a-81b0-34179390d264)
+
 - **GitHub Integration:** Whenever a developer commits code changes to the GitHub repository, GitHub triggers the Jenkins pipeline, initiating the automated process.
 - **Source Code Management:** Jenkins pulls the latest code changes from the GitHub repository to begin the build process.
 - **Quality Assurance:** The pipeline performs code quality checks to maintain high standards and adherence to coding guidelines.
 - **Vulnerability scanning** The pipeline ensures that the codebase is secure and free from potential threats.
 - **Build and Containerization:** Using PIP and docker image, the pipeline orchestrates the build process, package the code as a docker image. These artifacts are then pushed to the Azure Container Registry, facilitating seamless deployment.
-- **Kubernetes Deployment:** Additionally, the pipeline updates the Kubernetes deployment configuration by pushing the YAML files to another designated repository.
-- **Argo CD**: Argo CD our continuous delivery tool, automatically detects these changes and manages the deployment of applications on the Azure Kubernetes cluster.
-- **Monitoring and Alerting:** Prometheus and Grafana are integrated into the pipeline to monitor both the Kubernetes cluster and the deployed applications. Alerts are triggered if the cluster resource utilization exceeds 70% or if the application becomes unreachable, ensuring timely response to critical issues and proactiveness.
-- **Notification System:** The pipeline incorporates a notification system that informs relevant stakeholders via Microsoft Teams and email notifications upon successful or failed builds.
-This ensures transparency and facilitates rapid communication within the development team.
+- **Deployment:** Additionally, the pipeline updates the Kubernetes (deployment and service) configuration YAML files and push the YAML files to another designated Github repository(_https://github.com/EzeChinedumUchenna/emailApp-GitOps_)
+- **Argo CD**: Argo CD, our continuous delivery tool, automatically detects these changes and manages the deployment of applications on the Azure Kubernetes cluster.
+- **Monitoring and Alerting:** Prometheus and Grafana are integrated into the pipeline to monitor the Jenkins server resources, the Kubernetes cluster and the deployed applications. Alerts are triggered if the Jenkins server/cluster resources utilization exceeds 70% or if the application becomes unreachable, ensuring timely response to critical issues or proactiveness.
+- **Notification System:** The pipeline incorporates a notification system that informs relevant stakeholders via Microsoft Teams and email notifications upon successful or failed builds. This ensures transparency and facilitates rapid communication within the development team.
 
-
- ![DevOpsDesign](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/87d21b8a-9add-4e0a-81b0-34179390d264)
 
 ## Here are the steps Below:
 
