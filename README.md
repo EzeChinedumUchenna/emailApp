@@ -1,6 +1,6 @@
 # Deploying a Email Application to Kubernetes using Jenkins Pipeline
 
-In this project I implemented a complete CICD pipeline using Git, docker, Jenkins, python Install package, sonarqube, Azure Container Registry, Azure Kubernetes, Argo CD, Prometheus and grafana (Monitoring), Terraform, Teams and Email for Alert and Trivy for Vulnerability check. 
+In this project I implemented a complete CICD pipeline using Git, docker, Jenkins, python Install package, sonarqube, Azure Container Registry, Azure Kubernetes, Argo CD, Prometheus and grafana (Monitoring), Terraform, Teams and Email for Alert and messaging and Trivy for Vulnerability check. 
 
  ![DevOpsDesign](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/87d21b8a-9add-4e0a-81b0-34179390d264)
 
@@ -8,7 +8,7 @@ In this project I implemented a complete CICD pipeline using Git, docker, Jenkin
 
 ### Step 1 - Install Jenkins Server
 - Spin up a new Ubuntu server for Jenkins and enable port 8080 for communication.
-- Run "sudo apt update & sudo apt upgrade".
+- Run *sudo apt update & sudo apt upgrade*.
 - Then Run the command below:
 
 ```bash
@@ -19,18 +19,21 @@ sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
 sudo apt update -y
 sudo apt-get install jenkins
 ```
-Run sudo systemctl status jenkins to confirm Jenkins is running.
+- Run _sudo systemctl status jenkins_ to confirm Jenkins is running.
+- Log into Jenkins by putting in _http://{Jenkins-Server-Public-Server-IP}:8080_ to initiate the setup.
 
-Log into Jenkins by putting in http://:8080 to initiate the setup.
+- Upon reaching Jenkins, you would be asked to put in the administrator password. This can be found by running sudo _cat /var/lib/jenkins/secrets/initialAdminPassword_. Copy and paste it in the box. Jenkins Startpage
+- 
+![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/36f3dc62-88da-4de7-bbff-ad9d9cab5287)
 
-Upon reaching Jenkins, you would be asked to put in the administrator password. This can be found by running sudo cat /var/lib/jenkins/secrets/initialAdminPassword. Copy and paste it in the box. Jenkins Startpage
+-Next, install suggested plugins to install the basic plugins necessary for Jenkins. Jenkins Plugins
 
-Next, install suggested plugins to install the basic plugins necessary for Jenkins. Jenkins Plugins
+![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/62ee1a1e-b4ea-4d9a-a487-7f22153e1495)
 
-Once plugins installation is done, create an admin user and you will get your Jenkins server address.
+- Once plugins installation is done, create an admin user and you will get your Jenkins server address.
 
-Step 2 - Configure Jenkins To Retrieve Source Codes From GitHub Using Webhooks
-Go to the tooling repo on GitHub (or repo in question), then go to settings and click on webhook. The payload IP is http://Jenkins-Server-Public-Server-IP:8080/github-webhook/. The content type should be set to application/json.
+### Step 2 - Configure Jenkins To Retrieve Source Codes From GitHub Using Webhooks
+Go to the tooling repo on GitHub (or repo in question), then go to settings and click on webhook. The payload IP is http://{Jenkins-Server-Public-Server-IP}:8080/github-webhook/. The content type should be set to application/json.
 
 Go to the Jenkins home page ad click on new projects. Give the projet a name and select freestyle project.
 
