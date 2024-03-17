@@ -19,20 +19,17 @@ In this project, we've established a robust CI/CD pipeline that automates the so
 
 ## Here are the steps Below:
 
-### Step 1 - Install Jenkins Server
-- Spin up a new Ubuntu server for Jenkins and enable port 8080 for communication.
-- Run ```sudo apt update & sudo apt upgrade```.
-- Then Run the command below:
 
+### Step 1 - Install Jenkins Server
+- Begin by spinning up a new Ubuntu server dedicated to Jenkins. Ensure that port 8080 is enabled for communication.
+- Execute the following commands to update and upgrade your system:
+ ```sudo apt update & sudo apt upgrade```.
+- Proceed with installing Java:
 ```bash
-# Install Java.
-sudo apt update
-sudo apt upgrade
 sudo nano /etc/hostname     # Use this command to change your hostname (optional)
 sudo init 6      # This restart the system gracefully (optional)
 sudo apt install openjdk-17-jre     # install java
 java -version     
-
 # Install Jenkins
 Refer--https://www.jenkins.io/doc/book/installing/linux/
 curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
@@ -55,10 +52,10 @@ cd .ssh
 - Log into Jenkins by putting in _http://{Jenkins-Server-Public-Server-IP}:8080_ to initiate the setup.
 
 - Upon reaching Jenkins, you would be asked to put in the administrator password. This can be found by running sudo _cat /var/lib/jenkins/secrets/initialAdminPassword_. Copy and paste it in the box. Jenkins Startpage
-- 
+  
 ![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/36f3dc62-88da-4de7-bbff-ad9d9cab5287)
 
-- Next, install suggested plugins to install the basic plugins necessary for Jenkins. Jenkins Plugins
+- Proceed to install suggested plugins.
 
 ![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/62ee1a1e-b4ea-4d9a-a487-7f22153e1495)
 
