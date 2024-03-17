@@ -1,3 +1,14 @@
+# Deploying a Email Application to Kubernetes using Jenkins Pipeline
+
+This project will explain a step to step 
+ ![DevOpsDesign](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/87d21b8a-9add-4e0a-81b0-34179390d264)
+
+ 
+ ![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/6f78e874-f9a0-4b30-8244-59c37a460d4b)
+
+ 
+ 
+ 
  Video Link -- https://youtu.be/e42hIYkvxoQ
 ============================================================= Install and Configure the Jenkins-Master & Jenkins-Agent =============================================================
 ## Install Java.
