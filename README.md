@@ -12,14 +12,33 @@ In this project I implemented a complete CICD pipeline using Git, docker, Jenkin
 - Then Run the command below:
 
 ```bash
-sudo apt install default-jdk-headless
-wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
-/etc/apt/sources.list.d/jenkins.list'
-sudo apt update -y
+## Install Java.
+sudo apt update
+sudo apt upgrade
+sudo nano /etc/hostname     # Use this command to change your hostname (optional)
+sudo init 6      # This restart the system gracefully (optional)
+sudo apt install openjdk-17-jre     # install java
+java -version     
+
+## Install Jenkins
+Refer--https://www.jenkins.io/doc/book/installing/linux/
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
 sudo apt-get install jenkins
+
+$ sudo systemctl enable jenkins       //Enable the Jenkins service to start at boot
+$ sudo systemctl start jenkins        //Start Jenkins as a service
+$ systemctl status jenkins
+$ sudo nano /etc/ssh/sshd_config
+$ sudo service sshd reload
+$ ssh-keygen OR $ ssh-keygen -t ed25519
+$ cd .ssh
 ```
-- Run ```sudo systemctl status jenkins``` to confirm Jenkins is running.
+
 - Log into Jenkins by putting in _http://{Jenkins-Server-Public-Server-IP}:8080_ to initiate the setup.
 
 - Upon reaching Jenkins, you would be asked to put in the administrator password. This can be found by running sudo _cat /var/lib/jenkins/secrets/initialAdminPassword_. Copy and paste it in the box. Jenkins Startpage
@@ -38,24 +57,20 @@ sudo apt-get install jenkins
 - Go to the Jenkins home page and click on new projects. Give the projet a name and select Pipeline project. Here the project name is "emialApp-CI-Job"
 
 - Copy the URL of the Github repo as that will be used to link Jenkins to the repo and work with it. After copying the URL, Go into the project "emialApp-CI-Job" in the left hand blade, select "configure", head over to Pipeline and choose Git as Source code management (SCM)
+- Select credentials and input your GitHub credentials so Jenkins can have access to read activitie from the cloud repo.
+- Under Branches to build select your Branch name. In my own case I am pulling from the main branch
+- Under Script Path select Jenkinsfile as our pipeline script in the Github repro is in a file called Jenkinsfile.
+- Save configuration and click on build now, which should build successfully with a green tick. This is a test to see if the connection is set up correctly.
+
 
 ![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/10642258-aee3-4826-b729-f3054b23e985)
 
 ![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/dd3e289a-e5fa-4621-9c1c-09c19790ac9c)
 
-- Select credentials and input your GitHub credentials so Jenkins can have access to read activitie from the cloud repo.
-- Under Branches to build select your Branch name. In my own case I am pulling from the main branch
-- Under Script Path select Jenkinsfile as our pipeline script in the Github repro is in a file called Jenkinsfile.
-- Save configuration and click on build now, which should build successfully with a green tick. This is a test to see if the connection is set up correctly.
-- Click configure on the job/project and add the following configs:
+- Click configure on the job/project. Under Build Trigger, check _GitHub hook trigger for GITScm polling_
+![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/a3a50fd7-b6d3-45e9-aca2-fb72f39a5e10)
 
-GitScm Polling
-GitScm
-
-Configure Post build actions to "archive the artifacts" and set it to ** for all files.
-Archive files
-
-Make a change to the README file in your GitHub repo and a new build should run on Jenkins. The artifacts are stored on Jenkins locally in this folder /var/lib/jenkins/jobs/<nameofrepo>/builds/<build_number>/archive/
+Make a change to the README file in your GitHub repo and a new build should run on Jenkins. The artifacts are stored on Jenkins locally in this folder _/var/lib/jenkins/jobs/<nameofrepo>/builds/<build_number>/archive/_
 
 
 ============================================================= Install and Configure the Jenkins-Master & Jenkins-Agent =============================================================
