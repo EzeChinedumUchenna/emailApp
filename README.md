@@ -51,7 +51,7 @@ cd .ssh
 
 - Log into Jenkins by putting in _http://{Jenkins-Server-Public-Server-IP}:8080_ to initiate the setup.
 
-- Upon reaching Jenkins, you would be asked to put in the administrator password. This can be found by running sudo _cat /var/lib/jenkins/secrets/initialAdminPassword_. Copy and paste it in the box. Jenkins Startpage
+- Upon reaching Jenkins, you would be asked to put in the administrator password. This can be found by running ```sudo cat /var/lib/jenkins/secrets/initialAdminPassword```. Copy and paste it in the box. Jenkins Startpage
   
 ![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/36f3dc62-88da-4de7-bbff-ad9d9cab5287)
 
