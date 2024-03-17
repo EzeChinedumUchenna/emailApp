@@ -7,7 +7,7 @@ In this project I implemented a complete CICD pipeline using Git, docker, Jenkin
 ## Here are the steps Below:
 
 ### Step 1 - Install Jenkins Server
-Spin up a new Ubuntu server for Jenkins and enable port 8080 for communication. Run sudo apt update & sudo apt upgrade.
+- Spin up a new Ubuntu server for Jenkins and enable port 8080 for communication. Run sudo apt update & sudo apt upgrade.
 
 Run the command below:
 
