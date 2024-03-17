@@ -1,21 +1,16 @@
 # Deploying a Email Application to Kubernetes using Jenkins Pipeline
 
-In this project I implemented a complete CICD pipeline using Git, docker, Jenkins, python Install package, sonarqube, Azure Container Registry, Azure Kubernetes, Argo CD, Prometheus and grafana (Monitoring), Terraform, Teams and Email for Alert and messaging and Trivy for Vulnerability check. 
-
 In this project, we've established a robust CI/CD pipeline that automates the software delivery process, ensuring efficiency, reliability, and quality throughout the development lifecycle.
 
-#### Pipeline Workflow:
+## Pipeline Workflow:
 
-##### GitHub Integration: Whenever a developer commits code changes to the GitHub repository, GitHub triggers the Jenkins pipeline, initiating the automated process.
+- GitHub Integration: Whenever a developer commits code changes to the GitHub repository, GitHub triggers the Jenkins pipeline, initiating the automated process.
 
-Source Code Management:
-
-Jenkins pulls the latest code changes from the GitHub repository to begin the build process.
-Quality Assurance:
-
-The pipeline performs code quality checks to maintain high standards and adherence to coding guidelines.
-Vulnerability scanning ensures that the codebase is secure and free from potential threats.
-Build and Containerization:
+- Source Code Management: Jenkins pulls the latest code changes from the GitHub repository to begin the build process.
+- Quality Assurance:
+  The pipeline performs code quality checks to maintain high standards and adherence to coding guidelines.
+  Vulnerability scanning ensures that the codebase is secure and free from potential threats.
+- Build and Containerization:
 
 Using PIP, the pipeline orchestrates the build process, compiling the code into executable artifacts.
 These artifacts are then pushed to the Azure Container Registry, facilitating seamless deployment.
