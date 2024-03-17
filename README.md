@@ -2,6 +2,40 @@
 
 In this project I implemented a complete CICD pipeline using Git, docker, Jenkins, python Install package, sonarqube, Azure Container Registry, Azure Kubernetes, Argo CD, Prometheus and grafana (Monitoring), Terraform, Teams and Email for Alert and messaging and Trivy for Vulnerability check. 
 
+In this project, we've established a robust CI/CD pipeline that automates the software delivery process, ensuring efficiency, reliability, and quality throughout the development lifecycle.
+
+#### Pipeline Workflow:
+
+##### GitHub Integration: Whenever a developer commits code changes to the GitHub repository, GitHub triggers the Jenkins pipeline, initiating the automated process.
+
+Source Code Management:
+
+Jenkins pulls the latest code changes from the GitHub repository to begin the build process.
+Quality Assurance:
+
+The pipeline performs code quality checks to maintain high standards and adherence to coding guidelines.
+Vulnerability scanning ensures that the codebase is secure and free from potential threats.
+Build and Containerization:
+
+Using PIP, the pipeline orchestrates the build process, compiling the code into executable artifacts.
+These artifacts are then pushed to the Azure Container Registry, facilitating seamless deployment.
+Kubernetes Deployment:
+
+Additionally, the pipeline updates the Kubernetes deployment configuration by pushing the YAML files to a designated repository.
+Argo CD, our continuous delivery tool, automatically detects these changes and manages the deployment of applications on the Azure Kubernetes cluster.
+Monitoring and Alerting:
+
+Prometheus and Grafana are integrated into the pipeline to monitor both the Kubernetes cluster and the deployed applications.
+Alerts are triggered if the cluster resource utilization exceeds 70% or if the application becomes unreachable, ensuring timely response to critical issues.
+Notification System:
+
+The pipeline incorporates a notification system that informs relevant stakeholders via Microsoft Teams and email notifications upon successful or failed builds.
+This ensures transparency and facilitates rapid communication within the development team.
+Conclusion:
+
+By implementing this CI/CD pipeline, we've streamlined the development and deployment process, fostering collaboration, enhancing code quality, and improving the overall reliability of our software delivery lifecycle.
+
+
  ![DevOpsDesign](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/87d21b8a-9add-4e0a-81b0-34179390d264)
 
 ## Here are the steps Below:
@@ -12,7 +46,7 @@ In this project I implemented a complete CICD pipeline using Git, docker, Jenkin
 - Then Run the command below:
 
 ```bash
-## Install Java.
+# Install Java.
 sudo apt update
 sudo apt upgrade
 sudo nano /etc/hostname     # Use this command to change your hostname (optional)
@@ -20,7 +54,7 @@ sudo init 6      # This restart the system gracefully (optional)
 sudo apt install openjdk-17-jre     # install java
 java -version     
 
-## Install Jenkins
+# Install Jenkins
 Refer--https://www.jenkins.io/doc/book/installing/linux/
 curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
@@ -30,13 +64,13 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 sudo apt-get install jenkins
 
-$ sudo systemctl enable jenkins       //Enable the Jenkins service to start at boot
-$ sudo systemctl start jenkins        //Start Jenkins as a service
-$ systemctl status jenkins
-$ sudo nano /etc/ssh/sshd_config
-$ sudo service sshd reload
-$ ssh-keygen OR $ ssh-keygen -t ed25519
-$ cd .ssh
+sudo systemctl enable jenkins       # Enable the Jenkins service to start at boot
+sudo systemctl start jenkins        # Start Jenkins as a service
+systemctl status jenkins
+sudo nano /etc/ssh/sshd_config
+sudo service sshd reload
+ssh-keygen OR $ ssh-keygen -t ed25519
+cd .ssh
 ```
 
 - Log into Jenkins by putting in _http://{Jenkins-Server-Public-Server-IP}:8080_ to initiate the setup.
