@@ -19,7 +19,7 @@ sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
 sudo apt update -y
 sudo apt-get install jenkins
 ```
-- Run _sudo systemctl status jenkins_ to confirm Jenkins is running.
+- Run ```sudo systemctl status jenkins``` to confirm Jenkins is running.
 - Log into Jenkins by putting in _http://{Jenkins-Server-Public-Server-IP}:8080_ to initiate the setup.
 
 - Upon reaching Jenkins, you would be asked to put in the administrator password. This can be found by running sudo _cat /var/lib/jenkins/secrets/initialAdminPassword_. Copy and paste it in the box. Jenkins Startpage
@@ -33,17 +33,21 @@ sudo apt-get install jenkins
 - Once plugins installation is done, create an admin user and you will get your Jenkins server address.
 
 ### Step 2 - Configure Jenkins To Retrieve Source Codes From GitHub Using Webhooks
-Go to the tooling repo on GitHub (or repo in question), then go to settings and click on webhook. The payload IP is http://{Jenkins-Server-Public-Server-IP}:8080/github-webhook/. The content type should be set to application/json.
+- Go to the repo setting on GitHub and click on webhook. The payload URL is "http://{Jenkins-Server-Public-Server-IP}:8080/github-webhook/". The content type should be set to "application/json".
 
-Go to the Jenkins home page ad click on new projects. Give the projet a name and select freestyle project.
+- Go to the Jenkins home page and click on new projects. Give the projet a name and select Pipeline project. Here the project name is "emialApp-CI-Job"
 
-Copy the URL of the repo as that will be used to link Jenkins to the repo and work with it. After copying th URL, in the config setup of the Jenkins project, head over to source code management and choose Git. Source code management
+- Copy the URL of the Github repo as that will be used to link Jenkins to the repo and work with it. After copying the URL, Go into the project "emialApp-CI-Job" in the left hand blade, select "configure", head over to Pipeline and choose Git as Source code management (SCM)
 
-Select credentials and input your GitHub credentials so Jenkins can have access to read activitie from the cloud repo.
+![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/10642258-aee3-4826-b729-f3054b23e985)
 
-Save configuration and click on build now, which should build successfully with a green tick. This is a test to see if the connection is set up correctly.
+![image](https://github.com/EzeChinedumUchenna/emailApp/assets/102483586/dd3e289a-e5fa-4621-9c1c-09c19790ac9c)
 
-Click configure on the job/project and add the following configs:
+- Select credentials and input your GitHub credentials so Jenkins can have access to read activitie from the cloud repo.
+- Under Branches to build select your Branch name. In my own case I am pulling from the main branch
+- Under Script Path select Jenkinsfile as our pipeline script in the Github repro is in a file called Jenkinsfile.
+- Save configuration and click on build now, which should build successfully with a green tick. This is a test to see if the connection is set up correctly.
+- Click configure on the job/project and add the following configs:
 
 GitScm Polling
 GitScm
